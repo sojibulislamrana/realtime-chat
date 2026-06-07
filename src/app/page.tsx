@@ -3,32 +3,33 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
-const ANIMALS = ["wolf", "hawk", "beer", "shark", "tiger", "elephant", "leopard", "eagle", "hayena"];
+const ANIMALS = ["wolf", "eagle", "bear", "panda", "tiger"];
 const STORAGE_KEY = "chat_username";
 
-const generateUsername = () => {
-  const word = ANIMALS[Math.floor(Math.random() * ANIMALS.length)]; 
+const generateUsername = ()=>{
+  const word =  ANIMALS[Math.floor(Math.random() * ANIMALS.length)];
   return `annonymous-${word}-${nanoid(5)}`;
 }
 
-
 export default function Home() {
 
-  const [username, setUsername] = useState("SOJIBUL ISLAM RANA");
-  
-  useEffect(()=>{
-    const main = () => {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        setUsername(stored);
-        return
-      }
-      const generated = generateUsername();
-      localStorage.setItem(STORAGE_KEY, generated);
-      setUsername(generated);
-    }
-    main()
-  }, [])
+ const [username, setUsername] = useState("RANA_ASIF");
+
+ useEffect(()=> {
+  const main = ()=>{
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored){
+    setUsername(stored);
+    return;
+  }
+  const generated = generateUsername();
+  localStorage.setItem(STORAGE_KEY, generated);
+  setUsername(generated);
+  }
+
+  main()
+ }, [])
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4"> 
